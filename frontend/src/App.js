@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import NavComponent from './Components/NavComponent';
+import UserData from './Components/UserData/UserData';
 
 const base_url = window.SERVER_ADDRESS
 class App extends Component {
@@ -90,7 +91,7 @@ class App extends Component {
 				 />
 				<h3>{
 					this.state.logged_in
-					? `Hello ${this.state.username}`
+					? <UserData />
 					: 'Please log in'
 				}</h3>
 			</div>
