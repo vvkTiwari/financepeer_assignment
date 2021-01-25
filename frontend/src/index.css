@@ -1,12 +1,10 @@
 .fp-main-container {
-  margin-top: 20% !important;
+  margin-top: 10% !important;
   text-align: center;
 }
-
 form {
   max-width: 400px;
 }
-
 .mauto {
   margin: auto;
 }

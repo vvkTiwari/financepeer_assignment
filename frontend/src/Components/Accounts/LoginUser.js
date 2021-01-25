@@ -37,7 +37,7 @@ class LoginUser extends Component {
                         id="password"
                         placeholder="Password" />
                     </div>
-                    <button class="btn btn-primary" type='submit'>Login</button>
+                    <button className="btn btn-primary" type='submit'>Login</button>
                 </form>
             </div>
         )

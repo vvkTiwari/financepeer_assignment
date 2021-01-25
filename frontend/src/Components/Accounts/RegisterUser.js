@@ -26,6 +26,7 @@ class RegisterUser extends Component {
 
     }
     getErrors = (name, value) => {
+        //Register form Validation
         let errors = [];
         if(!required(value)){
             errors.push('This value is required')
@@ -115,7 +116,7 @@ class RegisterUser extends Component {
     render() {
         return (
             <div>
-                <form onSubmit={this.sendRegistration} noValidate>
+                <form className="mauto" onSubmit={this.sendRegistration} noValidate>
                     <div>
                         <label htmlFor="first_name"> First name </label>
                         <input type="text" id="first_name" name="first_name" value={this.state.first_name} onChange={this.changeHandler}  />
@@ -141,7 +142,7 @@ class RegisterUser extends Component {
                         <input type="password" id="pass2" name="password2" value={this.state.password2} onChange={this.changeHandler}  />
                         {this.getErrors('password2', this.state.password2)}
                     </div>
-                    <button type='submit'>Register</button>
+                    <button className="btn btn-success" type='submit'>Register</button>
                 </form>    
             </div>
         )

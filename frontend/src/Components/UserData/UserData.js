@@ -43,9 +43,13 @@ class UserData extends Component {
       }
     })
         .then(res => {
+          alert('Data Uploaded Successfully')
           console.log(res.data);
         })
-      .catch(err => console.log(err));
+      .catch(err => {
+        alert("Some error occured while uploading file!")
+        console.log(err)
+      });
   };
 
   render() {

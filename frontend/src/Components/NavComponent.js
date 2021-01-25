@@ -26,7 +26,7 @@ class NavComponent extends Component {
         );
         const logged_out_nav = (
             <ul>
-                <li onClick={this.props.handleLogout}>Logout</li>
+                <li className="btn btn-danger mx-1" onClick={this.props.handleLogout}>Logout</li>
             </ul>
         );
         return (

@@ -55,7 +55,7 @@ class UploadFileView(APIView):
         file = request.FILES.get('file')
         if not file:
             return Response({'response' : 'error', 'message' : 'No file found'})
-        data = self.parse_userdata_objecs_from_file(file)
+        data = self.parse_userdata_from_file(file)
         self.save_userdata_to_db(data)
         return Response({"response" : "success", "message" : "File uploaded succesfully"})
 
@@ -73,7 +73,7 @@ class UploadFileView(APIView):
                 print('Unable to save data with exception {}'.format(e))
         return            
 
-    def parse_userdata_objecs_from_file(self, file):
+    def parse_userdata_from_file(self, file):
         data = []
         f = File(file)
         try:
