@@ -1,6 +1,4 @@
 import React, { Component } from 'react'
-// import {Row} from 'reactstrap';
-
 
 class LoginUser extends Component {
     constructor(props) {

@@ -1,11 +1,11 @@
 from django.shortcuts import render
 
-from .serializers import UserSerializerWithToken, FullUserSerializer
+from .serializers import UserSerializerWithToken, FullUserSerializer, UserDataSerializer
 from rest_framework.views import APIView
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import permissions
-import json
+import simplejson as json
 
 from .models import UserData
 from django.core.files import File
@@ -30,6 +30,23 @@ class CreateUserView(APIView):
             return Response({"response" : "error", "message" : serializer.errors})
         return Response({"response" : "success", "message" : "user created succesfully"})
 
+
+class FetchAllUserDataView(APIView):
+    permission_classes = (permissions.AllowAny, )
+    def get(self,request):
+        user_data = list(UserData.objects.all())
+        res_data = []
+        if not user_data:
+            return Response({'response' : 'error', 'message' : 'No data found'})
+        for ud in user_data:
+            data = {
+                'id': ud.id,
+                'userId': ud.user.pk,
+                'title': ud.title,
+                'body': ud.body
+            }
+            res_data.append(data)
+        return Response(json.dumps(res_data))
 
 
 class UploadFileView(APIView):

@@ -92,7 +92,7 @@ class App extends Component {
 				<h3>{
 					this.state.logged_in
 					? <UserData />
-					: 'Please log in'
+					: 'Please log in to Continue!'
 				}</h3>
 			</div>
 		)

@@ -2,12 +2,17 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
+import UserDataDetail from './UserDataDetails';
+
+
 const base_url = window.SERVER_ADDRESS;
 
 class UserData extends Component {
 
   state = {
-    image: null
+    file: null,
+    userData: [],
+    showUserdata: false
   };
 
   handleFileChange = (e) => {
@@ -15,6 +20,16 @@ class UserData extends Component {
       file: e.target.files[0]
     })
   };
+
+  fetchAllUserData = () => {
+    let url = base_url + 'user-data/fetch-all/';
+    fetch(url)
+      .then(res => res.json())
+      .then(resp => {
+        this.setState({ userData : JSON.parse(resp), showUserdata: true })
+      })
+      .catch(err => console.log(err));
+  }
 
   handleSubmit = (e) => {
     e.preventDefault();
@@ -30,7 +45,7 @@ class UserData extends Component {
         .then(res => {
           console.log(res.data);
         })
-        .catch(err => console.log(err))
+      .catch(err => console.log(err));
   };
 
   render() {
@@ -44,6 +59,8 @@ class UserData extends Component {
           </p>
           <input className="btn btn-primary" type="submit"/>
         </form>
+        <button className="btn btn-primary mt-2" onClick={this.fetchAllUserData}>See All Data</button>
+        { this.state.showUserdata ? <UserDataDetail userdata={this.state.userData} /> : null }
       </div>
     );
   }
