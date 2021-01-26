@@ -1,4 +1,4 @@
-function UserDataDetail(props) {
+const UserDataDetail = (props) => {
     let userdata = props.userdata;
     console.log(userdata);
     return userdata.map((data) => {

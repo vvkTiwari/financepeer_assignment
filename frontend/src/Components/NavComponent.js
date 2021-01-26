@@ -18,20 +18,20 @@ class NavComponent extends Component {
             default:
                 form = null;
             }
-        const logged_in_nav = (
-            <ul>
-                <li className="btn btn-primary mx-1" onClick = {() => this.props.display_form('login')}>Login</li>
-                <li className="btn btn-primary mx-1" onClick = {() => this.props.display_form('signup')}>Signup</li>
-            </ul>
+        const log_in_nav = (
+            <nav className="navbar col-6 float-right align-self-center">
+                <a className="mr-1 pointer" onClick = {() => this.props.display_form('login')}>Login</a>
+                <a className="mr-1 pointer" onClick = {() => this.props.display_form('signup')}>Signup</a>
+            </nav>
         );
-        const logged_out_nav = (
-            <ul>
-                <li className="btn btn-danger mx-1" onClick={this.props.handleLogout}>Logout</li>
-            </ul>
+        const log_out_nav = (
+            <nav className="navbar col-6 float-right">
+                <a className="mx-1 pointer" onClick={this.props.handleLogout}>Logout</a>
+            </nav>
         );
         return (
             <div>
-                {this.props.logged_in? logged_out_nav : logged_in_nav}
+                {this.props.logged_in? log_out_nav : log_in_nav}
                 {form}            
             </div>
         );

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import NavComponent from './Components/NavComponent';
 import UserData from './Components/UserData/UserData';
+import Header from '../src/Components/Header/Header';
 
 const base_url = window.SERVER_ADDRESS
 class App extends Component {
@@ -79,16 +80,16 @@ class App extends Component {
 	render() {
 		const { logged_in, username, displayed_form } = this.state;
 		return (
-			<div className="fp-main-container">
-				<NavComponent
-				logged_in = {logged_in}
-				handleLogin = {this.handleLogin}
-				handleLoginChange = {this.handleLoginChange}
-				handleLogout = {this.handleLogout}
-				username = {username}
-				displayed_form = {displayed_form}
-				display_form = {this.display_form}
-				 />
+			<div className="container-fluid fp-main-container">
+				<Header 
+					logged_in = {logged_in}
+					handleLogin = {this.handleLogin}
+					handleLoginChange = {this.handleLoginChange}
+					handleLogout = {this.handleLogout}
+					username = {username}
+					displayed_form = {displayed_form}
+					display_form = {this.display_form}
+				/>
 				<h3>{
 					this.state.logged_in
 					? <UserData />

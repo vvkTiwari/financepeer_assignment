@@ -1,5 +1,4 @@
 .fp-main-container {
-  margin-top: 10% !important;
   text-align: center;
 }
 form {
@@ -18,4 +17,16 @@ form {
 }
 .card-body {
 	font-size: 0.9rem;
+}
+.header {
+	background: #e6e6e6;
+}
+.header > div > img {
+	width: 15rem;
+}
+.full-width {
+	width: 100%;
+}
+.pointer {
+	cursor: pointer;
 }

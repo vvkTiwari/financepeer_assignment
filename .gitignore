@@ -1,6 +1,7 @@
 frontend/node_modules
 .vscode/
 djangoenv/
+frontend/*.pyc
 *.pyc
 *.tmp
 frontend/.eslintcache
