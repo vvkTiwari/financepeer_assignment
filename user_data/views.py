@@ -60,17 +60,26 @@ class UploadFileView(APIView):
         return Response({"response" : "success", "message" : "File uploaded succesfully"})
 
     def save_userdata_to_db(self, data):
+        '''
+        this function creates a list of UserData objects,
+        then saves all data at once generally in one query.
+        '''
         if not data:
             return
+
+        user_data_bulklist = []
         for user_data in data:
             userdata_id = user_data.get('id')
             user_id = user_data.get('userId')
             title = user_data.get('title')
             body = user_data.get('body')
-            try:
-                UserData.objects.create(id=userdata_id, user_id=user_id, title=title, body=body)
-            except Exception as e:
-                print('Unable to save data with exception {}'.format(e))
+            user_data_bulklist.append(UserData(id=userdata_id, user_id=user_id, title=title, body=body))
+
+        try:
+            UserData.objects.bulk_create(user_data_bulklist)
+        except Exception as e:
+            print('Unable to save data with exception {}'.format(e))
+
         return            
 
     def parse_userdata_from_file(self, file):
