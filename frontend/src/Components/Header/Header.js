@@ -1,5 +1,7 @@
 import Logo from '../../assets/images/fp-logo.png';
 import Navbar from '../NavComponent';
+import UserContext from '../../UserContext';
+
 
 const Header = (props) => {
     return (
@@ -9,15 +11,15 @@ const Header = (props) => {
             </div>
             <div className="col-6"></div>
             <div className="col-2 align-self-center">
-                <Navbar
-                    logged_in = {props.logged_in}
-                    handleLogin = {props.handleLogin}
-                    handleLoginChange = {props.handleLoginChange}
-                    handleLogout = {props.handleLogout}
-                    username = {props.username}
-                    displayed_form = {props.displayed_form}
-                    display_form = {props.display_form}
-                />
+                <UserContext.Consumer>
+                    {
+                        (value) => <Navbar
+                            logged_in = {value.logged_in}
+                            handleLogout = {value.handleLogout}
+                            display_form = {props.display_form}
+                        />
+                    }
+                </UserContext.Consumer>
             </div>
         </div>
     )

@@ -116,33 +116,34 @@ class RegisterUser extends Component {
     render() {
         return (
             <div>
-                <form className="mauto" onSubmit={this.sendRegistration} noValidate>
-                    <div>
+                <h3>Register User</h3>
+                <form className="mauto mt-5" onSubmit={this.sendRegistration} noValidate>
+                    <div class="form-group">
                         <label htmlFor="first_name"> First name </label>
-                        <input type="text" id="first_name" name="first_name" value={this.state.first_name} onChange={this.changeHandler}  />
+                        <input className="form-control" type="text" id="first_name" name="first_name" value={this.state.first_name} onChange={this.changeHandler}  />
                         {this.getErrors('first_name', this.state.first_name)}
                     </div>
-                    <div>
+                    <div  class="form-group">
                         <label htmlFor="last_name"> Last name </label>
-                        <input type="text" id="last_name" name="last_name" value={this.state.last_name} onChange={this.changeHandler}  />
+                        <input  className="form-control" type="text" id="last_name" name="last_name" value={this.state.last_name} onChange={this.changeHandler}  />
                         {this.getErrors('last_name', this.state.last_name)}
                     </div>
-                    <div>
+                    <div  class="form-group">
                         <label htmlFor="username"> Username </label>
-                        <input type="text" id="username" name="username" value={this.state.username} onChange={this.changeHandler}  />
+                        <input  className="form-control" type="text" id="username" name="username" value={this.state.username} onChange={this.changeHandler}  />
                         {this.getErrors('username', this.state.username)}
                     </div>
-                    <div>
+                    <div  class="form-group">
                         <label htmlFor="pass"> Password </label>
-                        <input type="password" id="pass" name="password" value={this.state.password} onChange={this.changeHandler}  />
+                        <input  className="form-control" type="password" id="pass" name="password" value={this.state.password} onChange={this.changeHandler}  />
                         {this.getErrors('password', this.state.password)}
                     </div>
-                    <div>
+                    <div  class="form-group">
                         <label htmlFor="pass2"> Password again </label>
-                        <input type="password" id="pass2" name="password2" value={this.state.password2} onChange={this.changeHandler}  />
+                        <input  className="form-control" type="password" id="pass2" name="password2" value={this.state.password2} onChange={this.changeHandler}  />
                         {this.getErrors('password2', this.state.password2)}
                     </div>
-                    <button className="btn btn-success" type='submit'>Register</button>
+                    <button className="btn btn-success mt-3" type='submit'>Register</button>
                 </form>    
             </div>
         )

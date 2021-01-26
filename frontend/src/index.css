@@ -1,12 +1,18 @@
-.fp-main-container {
-  text-align: center;
-}
 form {
   max-width: 400px;
 }
 .mauto {
   margin: auto;
 }
+.full-width {
+	width: 100%;
+}
+.pointer {
+	cursor: pointer;
+}
+.fp-main-container {
+	text-align: center;
+  }
 .card {
 	color: black !important;
 	max-width: 600px !important;
@@ -20,13 +26,29 @@ form {
 }
 .header {
 	background: #e6e6e6;
+	/* position: fixed; */
+	/* top: 0; */
 }
 .header > div > img {
 	width: 15rem;
 }
-.full-width {
+.footer {
+	position: fixed;
+    bottom: 0;
+    padding: 1rem;
+    background: #e6e6e6;
+	width: 100%;
+	text-align: center;
+}
+.form-content {
+	height: 80vh;
 	width: 100%;
 }
-.pointer {
-	cursor: pointer;
+.main-content {
+	margin: 0 -1rem;
+	height: fit-content;
+	overflow: scroll;
+}
+.userdata {
+	height: 80vh;
 }

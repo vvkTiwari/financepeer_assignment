@@ -1,21 +1,22 @@
 import React, { Component } from 'react';
+
 import './App.css';
-import NavComponent from './Components/NavComponent';
-import UserData from './Components/UserData/UserData';
-import Header from '../src/Components/Header/Header';
+import Header from './Components/Header/Header';
+import Footer from './Components/Footer/Footer';
+import MainScreen from './Components/MainScreen/MainScreen';
+import UserContext from './UserContext';
 
 const base_url = window.SERVER_ADDRESS
 class App extends Component {
 	constructor(props) {
 		super(props)
-
 		this.state = {
-			 logged_in : localStorage.getItem('token') ? true : false,
-			 username : '',
-			 displayed_form : ''
+			logged_in : localStorage.getItem('token') ? true : false,
+			username : '',
+			displayed_form : ''
 		}
 	}
-
+	
 	componentDidMount(){
 		if(this.state.logged_in){
 			fetch(base_url + 'user-data/current_user/', {
@@ -31,22 +32,17 @@ class App extends Component {
 			.catch(err => console.log(err));
 		}
 	}
-
+	
 	display_form = (formName) => {
         this.setState({
             displayed_form : formName
         });
-    }
+	}
 
 	handleLoginChange = event => {
         this.setState({
             [event.target.name] : event.target.value
         })
-	}
-	
-	handleLogout = () => {
-		localStorage.removeItem('token');
-		this.setState({logged_in : false, username : ''})
 	}
 
 	handleLogin = (e, data) => {
@@ -76,26 +72,29 @@ class App extends Component {
 		this.setState({
 			displayed_form : ''
 		})
+    }
+
+	handleLogout = () => {
+		localStorage.removeItem('token');
+		this.setState({logged_in : false, username : ''})
 	}
+
 	render() {
 		const { logged_in, username, displayed_form } = this.state;
+		const value = {
+			logged_in: this.state.logged_in,
+			handleLogout: this.handleLogout,
+		}
 		return (
-			<div className="container-fluid fp-main-container">
-				<Header 
-					logged_in = {logged_in}
-					handleLogin = {this.handleLogin}
-					handleLoginChange = {this.handleLoginChange}
-					handleLogout = {this.handleLogout}
-					username = {username}
-					displayed_form = {displayed_form}
-					display_form = {this.display_form}
-				/>
-				<h3>{
-					this.state.logged_in
-					? <UserData />
-					: 'Please log in to Continue!'
-				}</h3>
-			</div>
+			<UserContext.Provider value={value}>
+				<div className="container-fluid fp-main-container">
+					<Header display_form={this.display_form} />
+					<MainScreen handleLogin={this.handleLogin} displayed_form={displayed_form}
+						handleLoginChange={this.handleLoginChange} username={username} logged_in={logged_in} />
+					<Footer />
+				</div>
+			</UserContext.Provider>
+
 		)
 	}
 }

@@ -15,7 +15,8 @@ class LoginUser extends Component {
     render() {
         return (
             <div>
-                <form className="form mauto" onSubmit={e => this.props.handleLogin(e, {
+                <h3>Log In</h3>
+                <form className="form mauto mt-5" onSubmit={e => this.props.handleLogin(e, {
                     username : this.props.username, 
                     password : this.state.password
                 })} >

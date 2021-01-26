@@ -12,7 +12,8 @@ class UserData extends Component {
   state = {
     file: null,
     userData: [],
-    showUserdata: false
+    showUserdata: false,
+    uploadFormVisible: true
   };
 
   handleFileChange = (e) => {
@@ -22,6 +23,7 @@ class UserData extends Component {
   };
 
   fetchAllUserData = () => {
+    this.setState({uploadFormVisible: false})
     let url = base_url + 'user-data/fetch-all/';
     fetch(url)
       .then(res => res.json())
@@ -54,17 +56,22 @@ class UserData extends Component {
 
   render() {
     return (
-      <div className="fp-upload-file-form">
-        <form className="form-group mauto" onSubmit={this.handleSubmit}>
-          <p className="text-center">
-            <input type="file" className="form-control"
-                   id="file"
-                   accept="*.json"  onChange={this.handleFileChange} required/>
-          </p>
-          <input className="btn btn-primary" type="submit"/>
-        </form>
-        <button className="btn btn-primary mt-2" onClick={this.fetchAllUserData}>See All Data</button>
-        { this.state.showUserdata ? <UserDataDetail userdata={this.state.userData} /> : null }
+      <div className="userdata">
+        { this.state.uploadFormVisible ? 
+          <form className="form-group mauto mt-5" onSubmit={this.handleSubmit}>
+            <h3>Upload a file to populate DB.</h3>
+            <p className="text-center">
+              <input type="file" className="form-control"
+                    id="file"
+                    accept="*.json"  onChange={this.handleFileChange} required/>
+            </p>
+            <input className="btn btn-primary" type="submit"/>
+            <br/><p class="mt-5">OR</p>
+          </form>
+          : null
+        }
+          <button className="btn btn-success mt-5" onClick={this.fetchAllUserData}>Fetch All User Data</button>
+          { this.state.showUserdata ? <UserDataDetail userdata={this.state.userData} buttonVisible={ !this.state.uploadFormVisible } /> : null }
       </div>
     );
   }
